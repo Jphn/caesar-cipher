@@ -13,9 +13,9 @@ segment .data
 	SYS_CALL equ 0x80 ; Envia informacao ao SO
 
 section .data
-	promptA db 'Fator: ', NULL
+	promptA db 'Fator: ', 0x00
 	lPromptA equ $ - promptA
-	promptB db 'Letra: ', NULL
+	promptB db 'Letra: ', 0x00
 	lPromptB equ $ - promptB
 
 section .bss
