@@ -22,7 +22,7 @@ section .bss
 	shift resb 1
 	input resb 32
 	lInput equ $ - input
-	cripted resb 32
+	cripted resb lInput
 
 section .text
 	global _start
@@ -49,7 +49,7 @@ _start:
 	mov eax, 0x03
 	mov ebx, 0x00
 	mov ecx, input
-	mov edx, lInput
+	mov edx, 32
 	int 0x80
 
 	mov edi, cripted
@@ -62,17 +62,7 @@ cripto1:
 	add al, [shift]
 	sub al, 0x30
 
-	mov ah, 0x60
-
-	cmp al, 0x7A
-	and ah, al
-	jg fixGreater
-
-	mov ah, 0x40
-
-	cmp al, 0x5A
-	and ah, al
-	jg fixGreater
+	jmp upper
 
 cripto2:
 	mov [edi], al
@@ -94,6 +84,21 @@ cripto2:
 fixGreater:
 	sub al, 0x1A
 	
+	jmp cripto2
+
+upper:
+	cmp al, 0x60
+	jg lower
+
+	cmp al, 0x5A
+	jg fixGreater
+
+	jmp cripto2
+
+lower:
+	cmp al, 0x7A
+	jg fixGreater
+
 	jmp cripto2
 
 _end:
