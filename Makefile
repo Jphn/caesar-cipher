@@ -14,7 +14,14 @@ define p_echo
 	@echo $(GREEN)$(BOLD)$(1)$(REGULAR)
 endef
 
+# COMPILER
+ASM = nasm
+FLAGS = -f elf64
+
+# FOLDERS
 DIST = bin
+
+# FILES
 TARGET = main
 
 run: $(DIST)/$(TARGET)
@@ -33,10 +40,10 @@ $(DIST)/:
 
 	mkdir $(DIST)
 
-%.o: %.nasm
+%.o: %.asm
 	$(call p_echo,"[CREATING OBJECT $@]")
 
-	nasm -f elf64 $<
+	$(ASM) $(FLAGS) $<
 
 clean:
 	$(call p_echo,"[CLEANING ALL]")
