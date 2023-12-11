@@ -1,4 +1,4 @@
-; cripto.nasm
+; cripto.asm
 ; João Pedro Holanda Neves
 ; holanda.neves07@aluno.ifce.edu.br
 segment .data
@@ -13,9 +13,9 @@ segment .data
 	SYS_CALL equ 0x80 ; Envia informacao ao SO
 
 section .data
-	promptA db 'Fator: ', 0x00
+	promptA db "Fator: "
 	lPromptA equ $ - promptA
-	promptB db 'Letra: ', 0x00
+	promptB db "Letra: "
 	lPromptB equ $ - promptB
 
 section .bss
