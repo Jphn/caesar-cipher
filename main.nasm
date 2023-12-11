@@ -62,7 +62,16 @@ cripto1:
 	add al, [shift]
 	sub al, 0x30
 
+	mov ah, 0x60
+
 	cmp al, 0x7A
+	and ah, al
+	jg fixGreater
+
+	mov ah, 0x40
+
+	cmp al, 0x5A
+	and ah, al
 	jg fixGreater
 
 cripto2:
