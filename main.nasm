@@ -59,6 +59,9 @@ cripto1:
 	mov al, [esi]
 	inc esi
 
+	cmp al, 0x20
+	je cripto2
+
 	add al, [shift]
 	sub al, 0x30
 
