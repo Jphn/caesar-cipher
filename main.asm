@@ -60,14 +60,18 @@ cripto1:
 	inc esi
 
 	cmp al, 0x20
-	je cripto2
-
-	add al, [shift]
-	sub al, 0x30
+	je cripto3
 
 	jmp upper
 
 cripto2:
+	add al, [shift]
+	sub al, 0x30
+
+	cmp al, ah
+	jg fixGreater
+
+cripto3:
 	mov [edi], al
 	inc edi
 
@@ -87,20 +91,18 @@ cripto2:
 fixGreater:
 	sub al, 0x1A
 	
-	jmp cripto2
+	jmp cripto3
 
 upper:
 	cmp al, 0x60
 	jg lower
 
-	cmp al, 0x5A
-	jg fixGreater
+	mov ah, 0x5A
 
 	jmp cripto2
 
 lower:
-	cmp al, 0x7A
-	jg fixGreater
+	mov ah, 0x7A
 
 	jmp cripto2
 
