@@ -74,7 +74,7 @@ cripto2:
 	cmp byte[esi], 0x0A
 	jne cripto1
 
-	mov byte[edi], 0x00
+	mov byte[edi], 0x0A
 	
 	mov eax, 0x04
 	mov ebx, 0x01
