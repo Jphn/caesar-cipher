@@ -22,7 +22,7 @@ section .bss
 	shift resb 1
 	input resb 32
 	lInput equ $ - input
-	cripted resb lInput
+	encrypted resb lInput
 
 section .text
 	global _start
@@ -52,7 +52,7 @@ _start:
 	mov edx, 32
 	int 0x80
 
-	mov edi, cripted
+	mov edi, encrypted
 	mov esi, input
 
 cripto1:
@@ -82,7 +82,7 @@ cripto3:
 	
 	mov eax, 0x04
 	mov ebx, 0x01
-	mov ecx, cripted
+	mov ecx, encrypted
 	mov edx, lInput
 	int 0x80
 
